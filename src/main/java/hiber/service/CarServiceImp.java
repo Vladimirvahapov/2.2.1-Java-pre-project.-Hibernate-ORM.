@@ -9,10 +9,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class CarServiceImp implements CarService {
 
-    @Autowired
     private CarDao carDao;
+
+    @Autowired
+    public CarServiceImp(CarDao carDao) {
+        this.carDao = carDao;
+    }
 
     @Transactional
     @Override
@@ -20,7 +25,7 @@ public class CarServiceImp implements CarService {
         carDao.add(car);
     }
 
-    @Transactional(readOnly = true)
+
     @Override
     public List<Car> listCar() {
         return carDao.listCar();
