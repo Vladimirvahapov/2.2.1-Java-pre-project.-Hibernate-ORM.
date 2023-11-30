@@ -9,5 +9,5 @@ public interface UserService {
 
     List<User> listUsers();
 
-    User foundUser(String model, int series);
+    User foundUser(String model, Integer series);
 }

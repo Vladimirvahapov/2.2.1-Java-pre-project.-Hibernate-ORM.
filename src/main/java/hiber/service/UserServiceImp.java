@@ -3,12 +3,10 @@ package hiber.service;
 import hiber.dao.UserDao;
 import hiber.model.User;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-@Transactional(readOnly = true)
 public class UserServiceImp implements UserService {
 
     private UserDao userDao;
@@ -17,7 +15,6 @@ public class UserServiceImp implements UserService {
         this.userDao = userDao;
     }
 
-    @Transactional
     @Override
     public void add(User user) {
         userDao.add(user);
@@ -29,7 +26,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public User foundUser(String model, int series) {
+    public User foundUser(String model, Integer series) {
         return userDao.foundUser(model, series);
     }
 

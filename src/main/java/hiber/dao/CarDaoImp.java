@@ -3,11 +3,13 @@ package hiber.dao;
 import hiber.model.Car;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Transactional(readOnly = true)
 public class CarDaoImp implements CarDao {
 
     private SessionFactory sessionFactory;
@@ -17,6 +19,7 @@ public class CarDaoImp implements CarDao {
     }
 
     @Override
+    @Transactional
     public void add(Car car) {
         sessionFactory.getCurrentSession().save(car);
     }
